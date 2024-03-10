@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Movies4u.Data;
 
 namespace Movies4u.Data
 {
@@ -9,5 +10,6 @@ namespace Movies4u.Data
             : base(options)
         {
         }
+        public DbSet<Movies4u.Data.Movies>? Movies { get; set; }
     }
 }
