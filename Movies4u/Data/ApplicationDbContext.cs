@@ -11,5 +11,6 @@ namespace Movies4u.Data
         {
         }
         public DbSet<Movies4u.Data.Movies>? Movies { get; set; }
+        public DbSet<Movies4u.Data.Genre>? Genre { get; set; }
     }
 }
