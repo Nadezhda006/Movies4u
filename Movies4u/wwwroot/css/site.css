@@ -14,5 +14,12 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    color: white;
+    margin-bottom: 60px;
+    background-image: url('/Content/dark.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: 'castellar';
+    font-variant: small-caps;
 }
