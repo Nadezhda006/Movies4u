@@ -10,7 +10,7 @@ namespace Movies4u.Data
             : base(options)
         {
         }
-        public DbSet<Movies4u.Data.Movies>? Movies { get; set; }
+        public DbSet<Movies4u.Data.Movie>? Movies { get; set; }
         public DbSet<Movies4u.Data.Genre>? Genre { get; set; }
         public DbSet<Movies4u.Data.MoviesandGenres>? MoviesandGenres { get; set; }
     }

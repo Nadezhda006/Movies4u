@@ -34,14 +34,14 @@ namespace Movies4u.Controllers
                 return NotFound();
             }
 
-            var movies = await _context.Movies
+            var movie = await _context.Movies
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (movies == null)
+            if (movie == null)
             {
                 return NotFound();
             }
 
-            return View(movies);
+            return View(movie);
         }
 
         // GET: Movies/Create
@@ -55,15 +55,15 @@ namespace Movies4u.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Rate,Description")] Movies movies)
+        public async Task<IActionResult> Create([Bind("Id,Name,Rate,Description,Duration,Year")] Movie movie)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(movies);
+                _context.Add(movie);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(movies);
+            return View(movie);
         }
 
         // GET: Movies/Edit/5
@@ -74,12 +74,12 @@ namespace Movies4u.Controllers
                 return NotFound();
             }
 
-            var movies = await _context.Movies.FindAsync(id);
-            if (movies == null)
+            var movie = await _context.Movies.FindAsync(id);
+            if (movie == null)
             {
                 return NotFound();
             }
-            return View(movies);
+            return View(movie);
         }
 
         // POST: Movies/Edit/5
@@ -87,9 +87,9 @@ namespace Movies4u.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Rate,Description")] Movies movies)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Rate,Description,Duration,Year")] Movie movie)
         {
-            if (id != movies.Id)
+            if (id != movie.Id)
             {
                 return NotFound();
             }
@@ -98,12 +98,12 @@ namespace Movies4u.Controllers
             {
                 try
                 {
-                    _context.Update(movies);
+                    _context.Update(movie);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MoviesExists(movies.Id))
+                    if (!MovieExists(movie.Id))
                     {
                         return NotFound();
                     }
@@ -114,7 +114,7 @@ namespace Movies4u.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(movies);
+            return View(movie);
         }
 
         // GET: Movies/Delete/5
@@ -125,14 +125,14 @@ namespace Movies4u.Controllers
                 return NotFound();
             }
 
-            var movies = await _context.Movies
+            var movie = await _context.Movies
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (movies == null)
+            if (movie == null)
             {
                 return NotFound();
             }
 
-            return View(movies);
+            return View(movie);
         }
 
         // POST: Movies/Delete/5
@@ -144,17 +144,17 @@ namespace Movies4u.Controllers
             {
                 return Problem("Entity set 'ApplicationDbContext.Movies'  is null.");
             }
-            var movies = await _context.Movies.FindAsync(id);
-            if (movies != null)
+            var movie = await _context.Movies.FindAsync(id);
+            if (movie != null)
             {
-                _context.Movies.Remove(movies);
+                _context.Movies.Remove(movie);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool MoviesExists(int id)
+        private bool MovieExists(int id)
         {
           return (_context.Movies?.Any(e => e.Id == id)).GetValueOrDefault();
         }
