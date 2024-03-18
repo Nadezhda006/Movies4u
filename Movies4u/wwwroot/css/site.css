@@ -1,10 +1,12 @@
 html {
-  font-size: 14px;
+  font-size: 16px;
+  /*14*/
 }
 
 @media (min-width: 768px) {
   html {
-    font-size: 16px;
+    font-size: 19px;
+    /*16*/
   }
 }
 
@@ -16,10 +18,10 @@ html {
 body {
     color: white;
     margin-bottom: 60px;
-    background-image: url('/Content/dark.png');
+    background-image: url('/Content/test.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    font-family: 'castellar';
+    font-family: 'Goudy Old Style';
     font-variant: small-caps;
 }

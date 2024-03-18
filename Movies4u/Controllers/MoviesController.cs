@@ -25,6 +25,19 @@ namespace Movies4u.Controllers
                           View(await _context.Movies.ToListAsync()) :
                           Problem("Entity set 'ApplicationDbContext.Movies'  is null.");
         }
+        public async Task<IActionResult> ShowSearchForm()
+        {
+            return _context.Movies != null ?
+                        View() :
+                        Problem("Entity set 'ApplicationDbContext.Products'  is null.");
+        }
+        // GET: Jokes/ShowSearchResults
+        public async Task<IActionResult> ShowSearchResults(string SearchPhrase)
+        {
+            return _context.Movies != null ?
+                        View("Index", await _context.Movies.Where(x => x.Name.Contains(SearchPhrase)).ToListAsync()) :
+                        Problem("Entity set 'ApplicationDbContext.Products'  is null.");
+        }
 
         // GET: Movies/Details/5
         public async Task<IActionResult> Details(int? id)
