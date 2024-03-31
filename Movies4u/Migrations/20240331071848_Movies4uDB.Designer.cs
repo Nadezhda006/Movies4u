@@ -12,14 +12,14 @@ using Movies4u.Data;
 namespace Movies4u.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240316084927_Initial")]
-    partial class Initial
+    [Migration("20240331071848_Movies4uDB")]
+    partial class Movies4uDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.27")
+                .HasAnnotation("ProductVersion", "6.0.28")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -243,7 +243,7 @@ namespace Movies4u.Migrations
                     b.ToTable("Genre");
                 });
 
-            modelBuilder.Entity("Movies4u.Data.Movies", b =>
+            modelBuilder.Entity("Movies4u.Data.Movie", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -256,6 +256,10 @@ namespace Movies4u.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Duration")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageURL")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -357,7 +361,7 @@ namespace Movies4u.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Movies4u.Data.Movies", "Movies")
+                    b.HasOne("Movies4u.Data.Movie", "Movies")
                         .WithMany()
                         .HasForeignKey("MoviesId")
                         .OnDelete(DeleteBehavior.Cascade)

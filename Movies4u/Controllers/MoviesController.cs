@@ -39,6 +39,7 @@ namespace Movies4u.Controllers
                         Problem("Entity set 'ApplicationDbContext.Products'  is null.");
         }
 
+
         // GET: Movies/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -68,7 +69,7 @@ namespace Movies4u.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Rate,Description,Duration,Year")] Movie movie)
+        public async Task<IActionResult> Create([Bind("Id,Name,Rate,Description,Duration,Year,ImageURL")] Movie movie)
         {
             if (ModelState.IsValid)
             {
@@ -100,7 +101,7 @@ namespace Movies4u.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Rate,Description,Duration,Year")] Movie movie)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Rate,Description,Duration,Year,ImageURL")] Movie movie)
         {
             if (id != movie.Id)
             {
