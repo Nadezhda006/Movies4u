@@ -1,4 +1,16 @@
-﻿@model IEnumerable<Movies4u.Data.Movie>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@if (User.IsInRole("Admin"))
+{
+    
+}
+else
+{
+
+}
+@model IEnumerable<Movies4u.Data.Movie>
+
 
 @{
     // ViewData["Title"] = "Index";
@@ -6,9 +18,7 @@
 
 @* <h1>Index</h1> *@
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+  
 <table class="table">
 
     <thead>
@@ -65,14 +75,25 @@
             {
                 <div class="movie">
                     <img src="@movie.ImageURL" alt="Image" style=" max-width: 250px; max-height: 400px;" />
-                    <p>@movie.Name ( @movie.Rate)</p>
+                    <p>@movie.Name ( @movie.Year)</p>
                     @* <h2>@movie.Rate</h2>      *@             
                     @* <p>Description: @movie.Description</p> *@
-                    <p>Year: @movie.Year</p>
+                    <p>Rate: @movie.Rate</p>
                     @* <p>Duration: @movie.Duration</p> *@
-                    <a asp-action="Edit" asp-route-id="@movie.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@movie.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@movie.Id">Delete</a>
+                    <a asp-action="Details" asp-route-id="@movie.Id">Details</a>
+                    
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                         <a asp-action="Edit" asp-route-id="@movie.Id">Edit</a>
+                        
+                         <a asp-action="Delete" asp-route-id="@movie.Id">Delete</a>
+                         <a asp-action="Create">Create New</a>
+                    }
+                    else
+                    {
+
+                    }
                     
                 </div>
             }
@@ -100,7 +121,7 @@
         <p style="color:white;"> @Html.DisplayFor(modelItem => item.ImageURL)
         </td>
         <td>
-        <td> *@
+        <td>
         @*   <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
         <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
         <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> *@

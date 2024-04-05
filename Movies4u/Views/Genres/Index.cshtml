@@ -1,4 +1,7 @@
-﻿@model IEnumerable<Movies4u.Data.Genre>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@model IEnumerable<Movies4u.Data.Genre>
 
 @{
     ViewData["Title"] = "Index";
@@ -6,14 +9,11 @@
 
 <h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                <p style="color:white;"> @Html.DisplayNameFor(model => model.Name)
             </th>
             <th></th>
         </tr>
@@ -22,13 +22,22 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                    <p style="color:white;"> @Html.DisplayFor(modelItem => item.Name)
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
             </td>
-            <td>
+            
+                @if (User.IsInRole("Admin"))
+                {
+                   <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Create">Create New</a>
             </td>
+                }
+                else
+                {
+
+                }
         </tr>
 }
     </tbody>
