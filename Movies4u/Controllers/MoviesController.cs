@@ -29,16 +29,39 @@ namespace Movies4u.Controllers
         {
             return _context.Movies != null ?
                         View() :
-                        Problem("Entity set 'ApplicationDbContext.Products'  is null.");
+                        Problem("Entity set 'ApplicationDbContext.Movies'  is null.");
         }
         // GET: Jokes/ShowSearchResults
         public async Task<IActionResult> ShowSearchResults(string SearchPhrase)
         {
             return _context.Movies != null ?
                         View("Index", await _context.Movies.Where(x => x.Name.Contains(SearchPhrase)).ToListAsync()) :
-                        Problem("Entity set 'ApplicationDbContext.Products'  is null.");
+                        Problem("Entity set 'ApplicationDbContext.Movies'  is null.");
         }
-
+        public async Task<IActionResult> ShowComedyFilms()
+        {
+            return _context.Movies != null ?
+                        View(await _context.Movies.Where(m=>m.Description.Contains("Comedy")).ToListAsync()) :
+                        Problem("Entity set 'ApplicationDbContext.Movies'  is null.");
+        }
+        public async Task<IActionResult> ShowDramaFilms()
+        {
+            return _context.Movies != null ?
+                        View(await _context.Movies.Where(m => m.Description.Contains("Drama")).ToListAsync()) :
+                        Problem("Entity set 'ApplicationDbContext.Movies'  is null.");
+        }
+        public async Task<IActionResult> ShowActionFilms()
+        {
+            return _context.Movies != null ?
+                        View(await _context.Movies.Where(m => m.Description.Contains("Action")).ToListAsync()) :
+                        Problem("Entity set 'ApplicationDbContext.Movies'  is null.");
+        }
+        public async Task<IActionResult> ShowHorrorFilms()
+        {
+            return _context.Movies != null ?
+                        View(await _context.Movies.Where(m => m.Description.Contains("Horror")).ToListAsync()) :
+                        Problem("Entity set 'ApplicationDbContext.Movies'  is null.");
+        }
 
         // GET: Movies/Details/5
         public async Task<IActionResult> Details(int? id)
