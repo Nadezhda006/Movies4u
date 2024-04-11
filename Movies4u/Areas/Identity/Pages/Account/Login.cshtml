@@ -10,13 +10,15 @@
 <div class="row">
     
     <div class="col-md-4 offset-4 border border-white bg-black rounded">
-        <h1>Log in existing acc </h1>
+        <h1>Log in existing acc</h1>
+        
+        <hr />
         <section>
             
             <form id="account" method="post">
                 
-                <hr />
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                
+                <div asp-validation-summary="ModelOnly" class="text-danger bg-dark"></div>
                 <div class="form-floating">
                     <input asp-for="Input.Email" class="form-control border border-white" autocomplete="username" aria-required="true" />
                     <label asp-for="Input.Email" class="form-label"></label>
@@ -57,8 +59,9 @@
     </div>
     
         <section>
-          
-            <hr />
+        <h1> </h1>
+        
+           
             @{
                 if ((Model.ExternalLogins?.Count ?? 0) == 0)
                 {
