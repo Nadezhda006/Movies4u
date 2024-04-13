@@ -1,5 +1,7 @@
-using Moq;
-using Movies4u.Data;
+
+
+using NUnit.Framework;
+
 namespace Movies4uTests
 
 {
@@ -46,6 +48,13 @@ namespace Movies4uTests
             Assert.NotNull(genre);
 
         }
+        [Test]
+        public void Test1()
+        {
+
+        }
+
+
 
     }
 }

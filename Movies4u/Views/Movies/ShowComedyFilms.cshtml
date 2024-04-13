@@ -88,7 +88,7 @@ else
                         <a asp-action="Edit" asp-route-id="@movie.Id">Edit</a>
 
                         <a asp-action="Delete" asp-route-id="@movie.Id">Delete</a>
-                        <a asp-action="Create">Create New</a>
+
                     }
                     else
                     {
@@ -97,7 +97,16 @@ else
 
                 </div>
             }
+            @if (User.IsInRole("Admin"))
+            {
 
+
+                <h3><a asp-action="Create">Create New</a></h3>
+            }
+            else
+            {
+
+            }
 
         </div>
         @* @foreach (var item in Model) {
