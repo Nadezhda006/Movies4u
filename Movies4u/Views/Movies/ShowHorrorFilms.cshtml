@@ -1,14 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
-@if (User.IsInRole("Admin"))
-{
 
-}
-else
-{
-
-}
 @model IEnumerable<Movies4u.Data.Movie>
 
 
@@ -66,7 +59,7 @@ else
 
     </thead>
     <tbody>
-        <h1>Movies</h1>
+        <h1>Horror</h1>
         <div>
             @*   <img src="~/Content/images/barbie.jpg" size height="250px" alt="Sample Photo" /> *@
         </div>
@@ -74,8 +67,8 @@ else
             @foreach (var movie in Model)
             {
                 <div class="movie">
-                    <img src="@movie.ImageURL" alt="Image" style=" max-width: 250px; max-height: 400px;" />
-                    <p>@movie.Name ( @movie.Year)</p>
+                    <img src="@movie.ImageURL" alt="Image" style=" max-width: 250px; max-height: 300px;" />
+                    <p>@movie.Name (@movie.Year)</p>
                     @* <h2>@movie.Rate</h2>      *@
                     @* <p>Description: @movie.Description</p> *@
                     <p>Rate: @movie.Rate</p>

@@ -65,7 +65,7 @@ namespace Movies4u.Controllers
         public async Task<IActionResult> ShowAdventureFilms()
         {
             return _context.Movies != null ?
-                        View("Index", await _context.Movies.Where(x => x.Description.Contains("Adventure")).ToListAsync()) :
+                        View(await _context.Movies.Where(x => x.Description.Contains("Adventure")).ToListAsync()) :
                         Problem("Entity set 'ApplicationDbContext.Movies'  is null.");
         }
 
